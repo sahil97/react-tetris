@@ -3,11 +3,13 @@ import React, { useState } from 'react';
 import { createStage, checkCollision } from '../gameHelpers';
 import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris';
 
+// Custom Hooks
 import { useInterval } from '../hooks/useInterval';
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from '../hooks/useStage';
 import { useGameStatus } from '../hooks/useGameStatus';
 
+// Components
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
@@ -58,6 +60,7 @@ const Tetris = () => {
       updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
       if (player.pos.y < 1) {
+        console.log('GAME OVER!!!');
         setGameOver(true);
         setDropTime(null);
       }
@@ -69,6 +72,7 @@ const Tetris = () => {
     setDropTime(null);
     drop();
   };
+
   useInterval(() => {
     drop();
   }, dropTime);
